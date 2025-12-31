@@ -1,0 +1,43 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended"
+  ],
+  "rules": {
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "TemplateLiteral[expressions.length=0] > TemplateElement[value.raw=/dark:/]",
+        "message": "Do not use dark: classes. App is light-mode only."
+      },
+      {
+        "selector": "Literal[value=/^dark:/]",
+        "message": "Do not use dark: classes. App is light-mode only."
+      }
+    ],
+    "no-restricted-globals": [
+      "error",
+      {
+        "name": "dark",
+        "message": "Do not use dark mode. App is light-mode only."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+      }
+    },
+    {
+      "files": ["*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}
+
