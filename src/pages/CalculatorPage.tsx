@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   calculateMaterial,
   calculateLabor,
@@ -17,7 +17,6 @@ import type {
   AIConfidenceOutput,
   SubscriptionTier,
 } from '@/lib/types';
-import AuthButton from '@/components/AuthButton';
 import AIConfidenceCheck, { AIConfidenceResult } from '@/components/AIConfidenceCheck';
 import UpgradePrompt from '@/components/UpgradePrompt';
 import OnboardingModal from '@/components/OnboardingModal';
@@ -212,7 +211,7 @@ export default function Home() {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    } = supabase.auth.onAuthStateChange(async (_event: any, session: any) => {
       setUser(session?.user ?? null);
       if (session?.user) {
         await checkUserProfile();
