@@ -35,19 +35,14 @@ export default function AIConfidenceCheck({
     <div className="mt-4">
       <button
         onClick={() => {
-          if (disabled && !loading) {
-            // If disabled due to subscription, don't call handleCheck
-            // The parent component will show the upgrade message
-            return;
-          }
           if (!disabled && !loading) {
             handleCheck();
           }
         }}
-        disabled={loading}
+        disabled={loading || disabled}
         className={cn(
           "px-4 py-2 rounded-md text-sm transition-colors",
-          disabled
+          disabled || loading
             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
             : "bg-purple-600 hover:bg-purple-700 text-white"
         )}
